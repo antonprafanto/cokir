@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 
-use app\Models\Courier;
+use App\Models\Courier;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
