@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+
+use app\Models\Courier;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +16,10 @@ class CourierSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Courier::insert([
+            ['code' =>'JNE','title'=> 'Jalur Nugraha Ekakurir (JNE)'],
+            ['code'=> 'POS','title'=> 'POS Indonesia'],
+            ['code'=> 'TIKI','title'=> 'Citra Van Titipan Kilat']
+        ]);
     }
 }
