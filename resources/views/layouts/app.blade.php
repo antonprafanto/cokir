@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,12 +25,27 @@
             padding: 3rem 1.5rem;
             text-align: center;
         }
+
+        h1 {
+            color: #BEB3A6;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        p {
+            color: #BEB3A6;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
+
 <body>
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+    <main class="vstack gap-1">
+        @yield('content')
+    </main>
 </body>
+
 </html>
