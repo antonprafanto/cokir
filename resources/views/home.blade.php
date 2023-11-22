@@ -67,40 +67,41 @@
                             <label for="">Provinsi</label>
                             <select name="origin_province" id="" class="form-control">
                                 <option value="#">-</option>
-                                @foreach ($province as $key => $value)                             
-                                <option value="{{ $key }}">{{ $value }}</option>
-                            @endforeach
+                                @foreach ($province as $code => $title)
+                                <option value="{{ $code }}">{{ $title }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="">Kota/Kabupaten</label>
                             <select name="origin_city" id="" class="form-control">
                                 <option value="#">-</option>
+                                @foreach ($cities as $code => $title)
+                                <option value="{{ $code }}">{{ $title }}</option>
+                                @endforeach
+                               
                             </select>
                         </div>
                         <h5 class="text-muted">Tujuan Pengirim:</h5>
                         <div class="form-group">
                             <label for="">Kota/Kabupaten</label>
                             <select name="destination_city" id="destination_city" class="form-control">
-                                <option value="#">-</option>
-                            </select>
+                            <option value="#">-</option>
+                            @foreach ($cities as $code => $title)
+                                <option value="{{ $code }}">{{ $title }}</option>
+                            @endforeach
+                        </select>
+
                         </div>
                     </div>
                     <div class="col">
-                        <h5 class="text-muted">Pilih Expedisi:</h5>
+                    <h5 class="text-muted">Pilih Expedisi:</h5>
+                    @foreach ($couriers as $id => $name)
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1">JNE</label>
+                            <input class="form-check-input" type="checkbox" id="courierCheckbox{{ $id }}" name="couriers[]" value="{{ $id }}">
+                            <label class="form-check-label" for="courierCheckbox{{ $id }}">{{ $name }}</label>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                            <label class="form-check-label" for="inlineCheckbox2">TIKI</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                            <label class="form-check-label" for="inlineCheckbox2">POS</label>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="form-row">
@@ -110,4 +111,6 @@
             </div>
         </div>
     </div>
+
+    
     @endsection

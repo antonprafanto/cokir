@@ -18,3 +18,4 @@ mix.js([
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);
+
