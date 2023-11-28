@@ -3,8 +3,7 @@ $(document).ready(function () {
         var provinceId = $(this).val();
         if (provinceId) {
             $.ajax({
-                url: '/get-cities/' + provinceId,
-                type: 'GET',
+                url: '/get-cities/' + provinceId, type: 'GET',
                 dataType: 'json',
                 success: function (data) {
                     $('select[name="origin_city"]').empty();

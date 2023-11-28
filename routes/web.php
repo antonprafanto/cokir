@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CityController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,9 +17,10 @@ use App\Http\Controllers\CityController;
 */
 
 Route::get('/', function () {
-    return redirect('/home');
+    // return view('welcome'); ganti dengan yang baru      
+    return view('home');   
 });
 
 Route::get('/', [HomeController::class, 'index']);
-//Route::get('/api/province/{id}/cities', 'HomeController@getCities');
+
 Route::get('/get-cities/{province_id}', [CityController::class, 'getCities']);

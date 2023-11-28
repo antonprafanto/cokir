@@ -76,10 +76,6 @@
                             <label for="">Kota/Kabupaten</label>
                             <select name="origin_city" id="" class="form-control">
                                 <option value="#">-</option>
-                                @foreach ($cities as $code => $title)
-                                <option value="{{ $code }}">{{ $title }}</option>
-                                @endforeach
-                               
                             </select>
                         </div>
                         <h5 class="text-muted">Tujuan Pengirim:</h5>
