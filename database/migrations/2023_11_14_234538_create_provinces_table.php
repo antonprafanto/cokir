@@ -11,12 +11,11 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('provinces', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('code');
-            $table->string('title');
+            $table->string('name');
             $table->timestamps();
         });
     }

@@ -27,9 +27,15 @@ class HomeController extends Controller
     public function index()
     {
         $province = $this->getProvince();
-        $cities = $this->getCities(); 
-        $couriers = $this->getCourier(); 
-        return view('home', compact('province', 'cities', 'couriers'));
+        $cities = $this->getCities();
+        $couriers = $this->getCourier();
+        $citiesSearch = City::all();
+        return view('home', compact('province', 'cities', 'couriers', 'citiesSearch'));
+    }
+ 
+    public function store(Request $request)
+    {
+        dd($request->all());
     }
 
     public function getCities()
@@ -39,7 +45,7 @@ class HomeController extends Controller
 
     public function getCourier()
     {
-        return Courier::pluck('code', 'title');
+        return Courier::all();
     }
 
     public function getProvince()

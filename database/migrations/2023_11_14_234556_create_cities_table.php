@@ -11,13 +11,14 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('code');
-            $table->string('title');
-            $table->unsignedBigInteger('province_code');
+            $table->foreignId('province_id');
+            $table->string('type');
+            $table->string('name');
+            $table->string('postal_code');
             $table->timestamps();
         });
     }

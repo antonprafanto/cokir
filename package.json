@@ -17,6 +17,7 @@
         "postcss": "^8.1.14"
     },
     "dependencies": {
+        "select2": "^4.1.0-rc.0",
         "vue": "^3.3.8"
     }
 }

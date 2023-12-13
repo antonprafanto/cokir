@@ -3,24 +3,45 @@
 namespace Database\Seeders;
 
 use App\Models\City;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Province;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CitySeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
-        $fileKota = file_get_contents(base_path('database/kota.json'));
-        $fileKab = file_get_contents(base_path('database/kabupaten.json'));
-        $dataKota = json_decode($fileKota, true);
-        $dataKab = json_decode($fileKab, true);
+        $provinces = Province::all();
 
-        City::insert($dataKota);
-        City::insert($dataKab);
+        foreach ($provinces as $province) {
+            $cities = Http::withOptions(['verify' => false,])->withHeaders([
+                'key' => env('RAJAONGKIR_API_KEY')
+            ])->get('https://api.rajaongkir.com/starter/city?province=' . $province->id)->json()['rajaongkir']['results'];
+
+            $insert_city = [];
+
+            foreach ($cities as $city) {
+
+                $data = [
+                    'province_id'   => $province->id,
+                    'type'          => $city['type'],
+                    'name'          => $city['type'] . ' ' . $city['city_name'],
+                    'postal_code'   => $city['postal_code'],
+                    'created_at'    => now(),
+                    'updated_at'    => now(),
+                ];
+
+                $insert_city[] = $data;
+            }
+
+            $insert_city = collect($insert_city);
+
+            $city_chunks = $insert_city->chunk(100);
+
+            foreach ($city_chunks as $chunk) {
+                City::insert($chunk->toArray());
+            }
+        }
     }
 }
